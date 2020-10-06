@@ -3,6 +3,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const fetch = require("node-fetch");
 const path = require("path");
+var cors = require("cors");
 
 const app = express();
 const port = 3000;
@@ -10,7 +11,9 @@ const port = 3000;
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.use("/", express.static(path.join(__dirname, "../public")));
+app.use(cors());
+
+app.use("/", express.static(path.join(__dirname, "../../dist")));
 
 app.get("/rovers/:rover", async (req, res) => {
   const rover = req.params.rover;

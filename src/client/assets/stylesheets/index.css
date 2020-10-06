@@ -7,23 +7,23 @@ body {
   min-height: 100vh;
 }
 
-header {
+/* header {
   /* header styles */
-}
+/* }  */
 
 main {
   flex: 1;
   padding: 20px;
 }
 
-footer {
+/* footer {
   /* footer styles */
-}
+/* }  */
 
 /* -------------------  TABLET  --------------------- */
-@media (min-width: 768px) {
-  /* use mobile */
-}
+/* @media (min-width: 768px) { */
+/* use mobile */
+/* } */
 
 /* -------------------  DESKTOP  -------------------- */
 
