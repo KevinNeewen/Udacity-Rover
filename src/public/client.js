@@ -1,30 +1,31 @@
-let store = {
-    user: { name: "Student" },
-    apod: '',
-    rovers: ['Curiosity', 'Opportunity', 'Spirit'],
-}
+let store = Immutable.fromJS({
+  rovers: [
+    {
+      name: "Curiosity",
+    },
+  ],
+});
+
+//"Opportunity", "Spirit"
 
 // add our markup to the page
-const root = document.getElementById('root')
+const root = document.getElementById("root");
 
-const updateStore = (store, newState) => {
-    store = Object.assign(store, newState)
-    render(root, store)
-}
+const updateStore = (path, newState) => {
+  store = store.setIn(path, newState);
+  render(root, store);
+};
 
 const render = async (root, state) => {
-    root.innerHTML = App(state)
-}
-
+  root.innerHTML = App(state);
+};
 
 // create content
 const App = (state) => {
-    let { rovers, apod } = state
-
-    return `
+  const rovers = state.get("rovers");
+  return `
         <header></header>
         <main>
-            ${Greeting(store.user.name)}
             <section>
                 <h3>Put things on the page!</h3>
                 <p>Here is an example section.</p>
@@ -36,70 +37,55 @@ const App = (state) => {
                     explanation are returned. These keywords could be used as auto-generated hashtags for twitter or instagram feeds;
                     but generally help with discoverability of relevant imagery.
                 </p>
-                ${ImageOfTheDay(apod)}
+                ${Rovers(rovers)}
             </section>
         </main>
         <footer></footer>
-    `
-}
+    `;
+};
 
 // listening for load event because page should load before any JS is called
-window.addEventListener('load', () => {
-    render(root, store)
-})
+window.addEventListener("load", () => {
+  render(root, store);
+});
 
 // ------------------------------------------------------  COMPONENTS
 
-// Pure function that renders conditional information -- THIS IS JUST AN EXAMPLE, you can delete it.
-const Greeting = (name) => {
-    if (name) {
-        return `
-            <h1>Welcome, ${name}!</h1>
-        `
-    }
-
-    return `
-        <h1>Hello!</h1>
-    `
-}
-
 // Example of a pure function that renders infomation requested from the backend
-const ImageOfTheDay = (apod) => {
+const Rovers = (rovers) => {
+  return UnorderedList(rovers, Rover);
+};
 
-    // If image does not already exist, or it is not from today -- request it again
-    const today = new Date()
-    const photodate = new Date(apod.date)
-    console.log(photodate.getDate(), today.getDate());
+const UnorderedList = (list, callback) => {
+  return list
+    .map((element, index) => {
+      return `<ul>${callback(element, index)}</ul>`;
+    })
+    .join("");
+};
 
-    console.log(photodate.getDate() === today.getDate());
-    if (!apod || apod.date === today.getDate() ) {
-        getImageOfTheDay(store)
-    }
+const Rover = (rover, index) => {
+  const roverInformation = rover.get("result");
 
-    // check if the photo of the day is actually type video!
-    if (apod.media_type === "video") {
-        return (`
-            <p>See today's featured video <a href="${apod.url}">here</a></p>
-            <p>${apod.title}</p>
-            <p>${apod.explanation}</p>
-        `)
-    } else {
-        return (`
-            <img src="${apod.image.url}" height="350px" width="100%" />
-            <p>${apod.image.explanation}</p>
-        `)
-    }
-}
+  if (!roverInformation) {
+    getLatestRoverInformation(rover, index);
+    return;
+  }
+  return `<li><img src='${roverInformation.img_src}' alt='rover-image' height='200px' width='auto' /></li>`;
+};
+
+const utils = () => {};
 
 // ------------------------------------------------------  API CALLS
 
-// Example API call
-const getImageOfTheDay = (state) => {
-    let { apod } = state
-
-    fetch(`http://localhost:3000/apod`)
-        .then(res => res.json())
-        .then(apod => updateStore(store, { apod }))
-
-    return data
-}
+const getLatestRoverInformation = (rover, index) => {
+  const roverName = rover.get("name");
+  fetch(`http://localhost:3000/rovers/${roverName}`)
+    .then((res) => res.json())
+    .then((jsonResponse) => {
+      const result = jsonResponse.result.latest_photos[0];
+      const roverWithResult = rover.set("result", result);
+      debugger;
+      updateStore(["rovers", index], roverWithResult);
+    });
+};
