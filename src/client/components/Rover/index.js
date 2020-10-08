@@ -1,5 +1,6 @@
 import { store, updateStore } from "../../store";
 import ImageGrid from "../ImageGrid";
+import styles from "./rover.module.scss";
 
 const Rover = () => {
   const selectedRover = store.get("selectedRover");
@@ -20,12 +21,11 @@ const Rover = () => {
   };
 
   return `
-    <div>
+    <div class="${styles.rover}">
       <h3>${selectedRoverInfo.rover.name}</h3>
       <h5>Landing date: ${selectedRoverInfo.rover.landing_date}</h5>
       <h5>Launching date: ${selectedRoverInfo.rover.launch_date}</h5>
       <h5>Status: ${selectedRoverInfo.rover.status}</h5>
-
       ${ImageGrid(transformImages(selectedRoverInfo.latestPhotos))}
     </div>`;
 };
