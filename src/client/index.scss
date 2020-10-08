@@ -1,0 +1,77 @@
+/* -------------------  MOBILE  --------------------- */
+html {
+  box-sizing: border-box;
+  font-size: 16px;
+  height: 100%;
+  background-image: url("./assets/background.jpg");
+  background-size: cover;
+  // background-repeat: no-repeat;
+  background-position: center;
+  color: whitesmoke;
+  position: relative;
+
+  &:after {
+    content: "";
+    background-color: rgba(black, 0.05);
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+  }
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ol,
+ul,
+li {
+  margin: 0;
+  padding: 0;
+  font-weight: normal;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+main {
+  height: 100%;
+  padding: 2rem;
+}
+
+body {
+  font-family: Arial;
+  height: 100%;
+}
+
+/* -------------------  TABLET  --------------------- */
+/* @media (min-width: 768px) { */
+/* use mobile */
+/* } */
+
+/* -------------------  DESKTOP  -------------------- */
+
+@media (min-width: 1224px) {
+  /* use mobile */
+}
+
+/* -------------------  LARGE SCREENS  -------------- */
+
+@media (min-width: 1824px) {
+  /* use mobile */
+}

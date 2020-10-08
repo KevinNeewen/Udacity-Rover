@@ -1,3 +1,15 @@
 .rover {
-  padding-left: 10px;
+  .details {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+
+    h3 {
+      font-size: 2.5rem;
+    }
+    h5 {
+      font-size: 1rem;
+      margin-top: 0.2rem;
+    }
+  }
 }

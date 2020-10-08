@@ -1,16 +1,15 @@
 import Rover from "../Rover";
-import { store } from "../../store";
+import styles from "./app.module.scss";
 
 const App = () => {
   return `
-        <header></header>
-        <main>
-            <section>
-                <h1>Tabs</h1>
-                <div></div>
-                ${Rover()}
-            </section>
-        </main>
+        <header>Nasa Space!</header>
+            <main>
+                <div class=${styles.app}>
+                    <div></div>
+                    ${Rover()}
+                </div>
+            </main>
         <footer></footer>
     `;
 };

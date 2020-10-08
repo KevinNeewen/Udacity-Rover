@@ -1,4 +1,5 @@
 import App from "./components/App";
+import "./index.scss";
 const root = document.getElementById("root");
 
 window.addEventListener("load", () => {

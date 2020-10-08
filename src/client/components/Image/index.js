@@ -1,8 +1,10 @@
+import styles from "./image.module.scss";
+
 const Image = (title, source) => {
   return `
-    <div>
-      <span>${title}</span>
-      <img src='${source}' alt='rover-image' height='200px' width='auto' />
+    <div class=${styles.image}>
+      <p><b>Date Taken:</b> ${title}</p>
+      <img src='${source}' alt='rover-image'/>
     </div>
   `;
 };

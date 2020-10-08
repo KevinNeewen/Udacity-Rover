@@ -22,10 +22,12 @@ const Rover = () => {
 
   return `
     <div class="${styles.rover}">
-      <h3>${selectedRoverInfo.rover.name}</h3>
-      <h5>Landing date: ${selectedRoverInfo.rover.landing_date}</h5>
-      <h5>Launching date: ${selectedRoverInfo.rover.launch_date}</h5>
-      <h5>Status: ${selectedRoverInfo.rover.status}</h5>
+      <div class="${styles.details}">
+        <h3>${selectedRoverInfo.rover.name}</h3>
+        <h5>Landing date: ${selectedRoverInfo.rover.landing_date}</h5>
+        <h5>Launching date: ${selectedRoverInfo.rover.launch_date}</h5>
+        <h5>Status: ${selectedRoverInfo.rover.status}</h5>
+      </div>
       ${ImageGrid(transformImages(selectedRoverInfo.latestPhotos))}
     </div>`;
 };
