@@ -32,8 +32,6 @@ const Rover = () => {
     </div>`;
 };
 
-export default Rover;
-
 const getLatestRoverInformation = (rover) => {
   try {
     fetch(`http://localhost:3000/rovers/${rover}`)
@@ -54,3 +52,5 @@ const getLatestRoverInformation = (rover) => {
     console.log(error);
   }
 };
+
+export default Rover;

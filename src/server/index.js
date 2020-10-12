@@ -39,9 +39,9 @@ app.get("/rovers/:rover", async (req, res) => {
     case "Curiosity":
       res.send(curiosityMock);
     case "Spirit":
-      return spiritMock;
+      res.send(spiritMock);
     case "Opportunity":
-      return opportunityMock;
+      res.send(opportunityMock);
     default:
       console.log("ROVER NOT SUPPORTED");
   }

@@ -1,4 +1,22 @@
 header {
   font-size: 4rem;
-  text-align: center;
+}
+
+.buttons {
+  width: 100%;
+  display: inline-block;
+  margin-bottom: 2rem;
+  a {
+    margin-left: 2rem;
+    margin-right: 2rem;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .buttons {
+    margin-bottom: 0;
+    a {
+      margin: 0 0 2.5rem 0;
+    }
+  }
 }

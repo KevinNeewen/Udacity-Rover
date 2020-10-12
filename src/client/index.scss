@@ -1,18 +1,16 @@
-/* -------------------  MOBILE  --------------------- */
 html {
   box-sizing: border-box;
   font-size: 16px;
   height: 100%;
   background-image: url("./assets/background.jpg");
   background-size: cover;
-  // background-repeat: no-repeat;
   background-position: center;
   color: whitesmoke;
   position: relative;
 
   &:after {
     content: "";
-    background-color: rgba(black, 0.05);
+    background-color: rgba(black, 0.3);
     height: 100%;
     width: 100%;
     position: absolute;
@@ -57,6 +55,9 @@ main {
 body {
   font-family: Arial;
   height: 100%;
+  transform-style: preserve-3d;
+  transform: perspective(800px);
+  text-align: center;
 }
 
 /* -------------------  TABLET  --------------------- */
