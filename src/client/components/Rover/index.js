@@ -8,7 +8,8 @@ const Rover = () => {
 
   if (!selectedRoverInfo) {
     getLatestRoverInformation(selectedRover);
-    return;
+    
+    return '<div>Loading...</div>';
   }
 
   const transformImages = (photos) => {
@@ -37,7 +38,7 @@ const getLatestRoverInformation = (rover) => {
     fetch(`http://localhost:3000/rovers/${rover}`)
       .then((res) => res.json())
       .then((jsonResponse) => {
-        const limitedPhotos = jsonResponse.latest_photos.slice(0, 10);
+        const limitedPhotos = jsonResponse.result.latest_photos.slice(0, 10);
         const roverData = limitedPhotos[0].rover;
         const latestPhotos = limitedPhotos.map((photo) => {
           return {

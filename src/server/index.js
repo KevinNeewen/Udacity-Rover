@@ -19,31 +19,17 @@ app.use(cors());
 
 app.use("/", express.static(path.join(__dirname, "../../dist")));
 
-// app.get("/rovers/:rover", async (req, res) => {
-//   const rover = req.params.rover;
-
-//   try {
-//     let result = await fetch(
-//       `https://api.nasa.gov/mars-photos/api/v1/rovers/${rover}/latest_photos?api_key=${process.env.API_KEY}`
-//     ).then((res) => res.json());
-//     res.send({ result });
-//   } catch (error) {
-//     console.log("Failed");
-//     console.log(error);
-//   }
-// });
-
 app.get("/rovers/:rover", async (req, res) => {
   const rover = req.params.rover;
-  switch (rover) {
-    case "Curiosity":
-      res.send(curiosityMock);
-    case "Spirit":
-      res.send(spiritMock);
-    case "Opportunity":
-      res.send(opportunityMock);
-    default:
-      console.log("ROVER NOT SUPPORTED");
+
+  try {
+    let result = await fetch(
+      `https://api.nasa.gov/mars-photos/api/v1/rovers/${rover}/latest_photos?api_key=${process.env.API_KEY}`
+    ).then((res) => res.json());
+    res.send({ result });
+  } catch (error) {
+    console.log("Failed");
+    console.log(error);
   }
 });
 
