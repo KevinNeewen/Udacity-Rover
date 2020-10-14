@@ -8,7 +8,6 @@ const Rover = () => {
 
   if (!selectedRoverInfo) {
     getLatestRoverInformation(selectedRover);
-    
     return '<div>Loading...</div>';
   }
 
