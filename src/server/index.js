@@ -3,7 +3,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const fetch = require("node-fetch");
 const path = require("path");
-var cors = require("cors");
+const cors = require("cors");
 
 const curiosityMock = require("./mocks/curiosity.json");
 const spiritMock = require("./mocks/spirit.json");

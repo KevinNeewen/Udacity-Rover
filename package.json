@@ -4,11 +4,7 @@
   "description": "course project",
   "private": "true",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build-dev": "npx webpack --config webpack.dev.config.js",
-    "build-prod": "npx webpack --config webpack.prod.config.js",
-    "start-server": "node src/server/index.js",
-    "start-client": "webpack-dev-server --open --config webpack.dev.config.js"
+    "start": "npx webpack --config webpack.prod.config.js && node src/server/index.js"
   },
   "author": "",
   "license": "ISC",
